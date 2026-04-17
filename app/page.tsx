@@ -1,65 +1,152 @@
 import Image from "next/image";
+import Link from "next/link";
+import { products } from "@/lib/products";
+import ProductCard from "@/components/ProductCard";
+import { ArrowRight } from "lucide-react";
 
-export default function Home() {
+export default function HomePage() {
+  const featured = products.slice(0, 4);
+  const newArrivals = products.filter((p) => p.badge === "New");
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      {/* Hero */}
+      <section className="relative h-[90vh] min-h-[600px] flex items-end">
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=85"
+            alt="Hero"
+            fill
+            priority
+            className="object-cover object-top"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/20 to-transparent" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pb-20 w-full">
+          <div className="max-w-xl">
+            <p className="text-stone-300 text-sm uppercase tracking-widest mb-3 font-medium">
+              Spring / Summer 2024
+            </p>
+            <h1 className="text-white text-5xl sm:text-7xl font-bold leading-tight tracking-tight mb-6">
+              Dress for<br />the moment.
+            </h1>
+            <p className="text-stone-300 text-lg mb-8 leading-relaxed">
+              Curated essentials for every occasion. Clean lines, quality fabrics.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/products"
+                className="bg-white text-stone-900 px-8 py-4 rounded-full font-semibold text-sm hover:bg-stone-100 transition-colors inline-flex items-center gap-2"
+              >
+                Shop Now <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/products?category=Women"
+                className="border border-white/50 text-white px-8 py-4 rounded-full font-semibold text-sm hover:bg-white/10 transition-colors"
+              >
+                {"Women's Collection"}
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Categories */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+        <h2 className="text-2xl font-bold text-stone-900 mb-8">Shop by Category</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            { label: "Men", href: "/products?category=Men", image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&q=80" },
+            { label: "Women", href: "/products?category=Women", image: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80" },
+            { label: "Unisex", href: "/products?category=Unisex", image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80" },
+          ].map((cat) => (
+            <Link key={cat.label} href={cat.href} className="group relative aspect-[4/5] rounded-2xl overflow-hidden">
+              <Image src={cat.image} alt={cat.label} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/70 to-transparent" />
+              <div className="absolute bottom-0 left-0 p-6">
+                <p className="text-white text-2xl font-bold">{cat.label}</p>
+                <p className="text-stone-300 text-sm mt-1 flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Shop now <ArrowRight size={14} />
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-2xl font-bold text-stone-900">Featured Picks</h2>
+          <Link href="/products" className="text-sm text-stone-500 hover:text-stone-900 transition-colors inline-flex items-center gap-1">
+            View all <ArrowRight size={14} />
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          {featured.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      {/* Banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+        <div className="relative rounded-3xl overflow-hidden h-72 sm:h-96">
+          <Image
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&q=80"
+            alt="Sale banner"
+            fill
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-stone-900/50" />
+          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+            <p className="text-stone-300 text-sm uppercase tracking-widest mb-2">Limited Time</p>
+            <h2 className="text-white text-4xl sm:text-5xl font-bold mb-4">Up to 40% Off</h2>
+            <p className="text-stone-300 mb-6">Selected styles on sale now</p>
+            <Link
+              href="/products"
+              className="bg-white text-stone-900 px-8 py-3 rounded-full font-semibold text-sm hover:bg-stone-100 transition-colors"
+            >
+              Shop the Sale
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* New Arrivals */}
+      {newArrivals.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8 pb-20">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-stone-900">New Arrivals</h2>
+            <Link href="/products" className="text-sm text-stone-500 hover:text-stone-900 transition-colors inline-flex items-center gap-1">
+              View all <ArrowRight size={14} />
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {newArrivals.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* USPs */}
+      <section className="bg-stone-50 py-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { icon: "🚚", title: "Free Shipping", desc: "On orders over ₹75" },
+            { icon: "↩️", title: "Easy Returns", desc: "30-day return policy" },
+            { icon: "🔒", title: "Secure Payment", desc: "100% secure checkout" },
+            { icon: "🌿", title: "Sustainable", desc: "Ethically made" },
+          ].map((item) => (
+            <div key={item.title}>
+              <div className="text-3xl mb-2">{item.icon}</div>
+              <p className="font-semibold text-stone-900 text-sm">{item.title}</p>
+              <p className="text-stone-400 text-xs mt-1">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
