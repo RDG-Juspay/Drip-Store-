@@ -1,0 +1,444 @@
+{
+  "nodes": [
+    {"id": "postcss_config", "label": "postcss.config.mjs", "file_type": "code", "source_file": "postcss.config.mjs", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "next_config", "label": "next.config.js", "file_type": "code", "source_file": "next.config.js", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "next_env_d", "label": "next-env.d.ts", "file_type": "code", "source_file": "next-env.d.ts", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "layout_rootlayout", "label": "RootLayout", "file_type": "code", "source_file": "app/layout.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "page_homepage", "label": "HomePage", "file_type": "code", "source_file": "app/page.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "products_page_productspage", "label": "ProductsPage", "file_type": "code", "source_file": "app/products/page.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "products_page_productscontent", "label": "ProductsContent", "file_type": "code", "source_file": "app/products/page.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "id_page_productdetailpage", "label": "ProductDetailPage", "file_type": "code", "source_file": "app/products/[id]/page.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "checkout_page_checkoutpage", "label": "CheckoutPage", "file_type": "code", "source_file": "app/checkout/page.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "checkout_page_formdata", "label": "FormData", "file_type": "code", "source_file": "app/checkout/page.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "navbar_navbar", "label": "Navbar", "file_type": "code", "source_file": "components/Navbar.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "cartsidebar_cartsidebar", "label": "CartSidebar", "file_type": "code", "source_file": "components/CartSidebar.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "productcard_productcard", "label": "ProductCard", "file_type": "code", "source_file": "components/ProductCard.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "footer_footer", "label": "Footer", "file_type": "code", "source_file": "components/Footer.tsx", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "products_product", "label": "Product", "file_type": "code", "source_file": "lib/products.ts", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "products_products", "label": "products array", "file_type": "code", "source_file": "lib/products.ts", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "products_categories", "label": "categories array", "file_type": "code", "source_file": "lib/products.ts", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "store_cartitem", "label": "CartItem", "file_type": "code", "source_file": "lib/store.ts", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "store_cartstore", "label": "CartStore", "file_type": "code", "source_file": "lib/store.ts", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "store_usecartstore", "label": "useCartStore", "file_type": "code", "source_file": "lib/store.ts", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "readme_nextjs_project", "label": "Next.js project setup", "file_type": "document", "source_file": "README.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "agents_nextjs_agent_rules", "label": "Next.js agent rules (breaking changes warning)", "file_type": "document", "source_file": "AGENTS.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "claude_graphify_rules", "label": "graphify knowledge graph usage rules", "file_type": "document", "source_file": "CLAUDE.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "public_file_svg", "label": "file icon SVG", "file_type": "image", "source_file": "public/file.svg", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "public_vercel_svg", "label": "Vercel logo SVG", "file_type": "image", "source_file": "public/vercel.svg", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "public_next_svg", "label": "Next.js wordmark SVG", "file_type": "image", "source_file": "public/next.svg", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "public_globe_svg", "label": "globe/web icon SVG", "file_type": "image", "source_file": "public/globe.svg", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "public_window_svg", "label": "browser window icon SVG", "file_type": "image", "source_file": "public/window.svg", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}
+  ],
+  "edges": [
+    {
+      "source": "layout_rootlayout",
+      "target": "navbar_navbar",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/layout.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "layout_rootlayout",
+      "target": "footer_footer",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/layout.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "layout_rootlayout",
+      "target": "cartsidebar_cartsidebar",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/layout.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_homepage",
+      "target": "products_products",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "page_homepage",
+      "target": "productcard_productcard",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "products_page_productspage",
+      "target": "products_page_productscontent",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/products/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "products_page_productscontent",
+      "target": "products_products",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/products/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "products_page_productscontent",
+      "target": "products_categories",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/products/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "products_page_productscontent",
+      "target": "productcard_productcard",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/products/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "id_page_productdetailpage",
+      "target": "products_products",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/products/[id]/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "id_page_productdetailpage",
+      "target": "store_usecartstore",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/products/[id]/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "id_page_productdetailpage",
+      "target": "productcard_productcard",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/products/[id]/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "id_page_productdetailpage",
+      "target": "store_cartstore",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/products/[id]/page.tsx",
+      "source_location": "addItem call",
+      "weight": 1.0
+    },
+    {
+      "source": "checkout_page_checkoutpage",
+      "target": "store_usecartstore",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/checkout/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "checkout_page_checkoutpage",
+      "target": "store_cartstore",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/checkout/page.tsx",
+      "source_location": "items, total, clearCart destructured",
+      "weight": 1.0
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "store_usecartstore",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "components/Navbar.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "store_cartstore",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "components/Navbar.tsx",
+      "source_location": "openCart, itemCount calls",
+      "weight": 1.0
+    },
+    {
+      "source": "cartsidebar_cartsidebar",
+      "target": "store_usecartstore",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "components/CartSidebar.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "cartsidebar_cartsidebar",
+      "target": "store_cartstore",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "components/CartSidebar.tsx",
+      "source_location": "items, isOpen, closeCart, removeItem, updateQuantity, total destructured",
+      "weight": 1.0
+    },
+    {
+      "source": "productcard_productcard",
+      "target": "products_product",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "components/ProductCard.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "store_cartitem",
+      "target": "products_product",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/store.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "store_cartstore",
+      "target": "store_cartitem",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/store.ts",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "store_usecartstore",
+      "target": "store_cartstore",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/store.ts",
+      "source_location": "create<CartStore>()(persist(...))",
+      "weight": 1.0
+    },
+    {
+      "source": "store_usecartstore",
+      "target": "products_product",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "lib/store.ts",
+      "source_location": null,
+      "weight": 0.9
+    },
+    {
+      "source": "products_products",
+      "target": "products_product",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/products.ts",
+      "source_location": "Product[] typed array",
+      "weight": 1.0
+    },
+    {
+      "source": "next_config",
+      "target": "readme_nextjs_project",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "next.config.js",
+      "source_location": null,
+      "weight": 0.7
+    },
+    {
+      "source": "agents_nextjs_agent_rules",
+      "target": "next_config",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "claude_graphify_rules",
+      "target": "agents_nextjs_agent_rules",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "@AGENTS.md reference",
+      "weight": 1.0
+    },
+    {
+      "source": "cartsidebar_cartsidebar",
+      "target": "checkout_page_checkoutpage",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "components/CartSidebar.tsx",
+      "source_location": "Link href=/checkout",
+      "weight": 1.0
+    },
+    {
+      "source": "id_page_productdetailpage",
+      "target": "products_product",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/products/[id]/page.tsx",
+      "source_location": "product lookup via products.find",
+      "weight": 1.0
+    },
+    {
+      "source": "page_homepage",
+      "target": "products_page_productspage",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/page.tsx",
+      "source_location": "Link href=/products",
+      "weight": 1.0
+    },
+    {
+      "source": "store_usecartstore",
+      "target": "store_cartitem",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "lib/store.ts",
+      "source_location": "items: CartItem[] in CartStore",
+      "weight": 0.9
+    },
+    {
+      "source": "next_config",
+      "target": "public_vercel_svg",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.5,
+      "source_file": "next.config.js",
+      "source_location": null,
+      "weight": 0.5
+    },
+    {
+      "source": "products_page_productscontent",
+      "target": "id_page_productdetailpage",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "app/products/page.tsx",
+      "source_location": "ProductCard links to /products/[id]",
+      "weight": 0.85
+    },
+    {
+      "source": "productcard_productcard",
+      "target": "id_page_productdetailpage",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "components/ProductCard.tsx",
+      "source_location": "Link href=/products/${product.id}",
+      "weight": 1.0
+    },
+    {
+      "source": "checkout_page_checkoutpage",
+      "target": "checkout_page_formdata",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/checkout/page.tsx",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "agents_nextjs_agent_rules",
+      "target": "readme_nextjs_project",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "weight": 0.75
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "cart_state_consumers",
+      "label": "Components consuming useCartStore global cart state",
+      "nodes": ["navbar_navbar", "cartsidebar_cartsidebar", "id_page_productdetailpage", "checkout_page_checkoutpage"],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/store.ts"
+    },
+    {
+      "id": "product_data_consumers",
+      "label": "Pages and components consuming lib/products data",
+      "nodes": ["page_homepage", "products_page_productscontent", "id_page_productdetailpage", "productcard_productcard"],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/products.ts"
+    },
+    {
+      "id": "app_shell_layout",
+      "label": "Root layout shell: Navbar + CartSidebar + Footer wrap all pages",
+      "nodes": ["layout_rootlayout", "navbar_navbar", "cartsidebar_cartsidebar", "footer_footer"],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/layout.tsx"
+    },
+    {
+      "id": "product_browsing_flow",
+      "label": "User browsing flow: HomePage -> ProductsPage -> ProductDetailPage -> Checkout",
+      "nodes": ["page_homepage", "products_page_productspage", "id_page_productdetailpage", "checkout_page_checkoutpage"],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "app/page.tsx"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
