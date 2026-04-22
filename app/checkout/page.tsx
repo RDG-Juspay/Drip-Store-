@@ -4,12 +4,13 @@ import { useCartStore } from "@/lib/store";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 
 type FormData = {
   email: string;
   firstName: string;
   lastName: string;
+  phone: string;
   address: string;
   city: string;
   state: string;
@@ -18,54 +19,81 @@ type FormData = {
 };
 
 export default function CheckoutPage() {
-  const { items, total, clearCart } = useCartStore();
-  const [step, setStep] = useState<"details" | "success">("details");
+  const { items, total } = useCartStore();
   const [form, setForm] = useState<FormData>({
-    email: "", firstName: "", lastName: "", address: "",
-    city: "", state: "", zip: "", country: "India",
+    email: "",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+    country: "India",
   });
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
 
   const subtotal = total();
   const shipping = subtotal >= 75 ? 0 : 9.99;
   const tax = +(subtotal * 0.08).toFixed(2);
   const orderTotal = +(subtotal + shipping + tax).toFixed(2);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    clearCart();
-    setStep("success");
+    setApiError(null);
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items.map((i) => ({
+            productId: i.product.id,
+            quantity: i.quantity,
+            size: i.size,
+            color: i.color,
+          })),
+          customer: {
+            email: form.email,
+            firstName: form.firstName,
+            lastName: form.lastName,
+            phone: form.phone,
+          },
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setApiError(data.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      // Redirect browser to Juspay-hosted payment page
+      window.location.href = data.paymentUrl;
+    } catch {
+      setApiError("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const isComplete =
-    form.email && form.firstName && form.lastName && form.address &&
-    form.city && form.zip;
-
-  if (step === "success") {
-    return (
-      <div className="min-h-[70vh] flex items-center justify-center px-4">
-        <div className="text-center max-w-md">
-          <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Check size={36} className="text-emerald-600" />
-          </div>
-          <h1 className="text-3xl font-bold text-stone-900 mb-3">Order Confirmed!</h1>
-          <p className="text-stone-500 mb-2">Thank you, {form.firstName}!</p>
-          <p className="text-stone-500 text-sm mb-8">
-            A confirmation has been sent to <strong>{form.email}</strong>. Your order will arrive in 3–5 business days.
-          </p>
-          <Link
-            href="/"
-            className="bg-stone-900 text-white px-8 py-4 rounded-full font-semibold text-sm hover:bg-stone-800 transition-colors inline-block"
-          >
-            Continue Shopping
-          </Link>
-        </div>
-      </div>
-    );
-  }
+    form.email &&
+    form.firstName &&
+    form.lastName &&
+    form.phone &&
+    form.address &&
+    form.city &&
+    form.zip;
 
   if (items.length === 0) {
     return (
@@ -82,7 +110,10 @@ export default function CheckoutPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
-      <Link href="/products" className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-900 transition-colors mb-8">
+      <Link
+        href="/products"
+        className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-900 transition-colors mb-8"
+      >
         <ArrowLeft size={16} /> Continue Shopping
       </Link>
 
@@ -93,36 +124,90 @@ export default function CheckoutPage() {
         <form onSubmit={handleSubmit} className="lg:col-span-3 space-y-8">
           {/* Contact */}
           <div>
-            <h2 className="text-lg font-semibold text-stone-900 mb-4">Contact</h2>
-            <input
-              name="email"
-              type="email"
-              placeholder="Email address"
-              value={form.email}
-              onChange={handleChange}
-              required
-              className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
-            />
+            <h2 className="text-lg font-semibold text-stone-900 mb-4">
+              Contact
+            </h2>
+            <div className="space-y-3">
+              <input
+                name="email"
+                type="email"
+                placeholder="Email address"
+                value={form.email}
+                onChange={handleChange}
+                required
+                className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
+              />
+              <input
+                name="phone"
+                type="tel"
+                placeholder="10-digit mobile number"
+                value={form.phone}
+                onChange={handleChange}
+                required
+                maxLength={15}
+                className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
+              />
+            </div>
           </div>
 
           {/* Shipping */}
           <div>
-            <h2 className="text-lg font-semibold text-stone-900 mb-4">Shipping Address</h2>
+            <h2 className="text-lg font-semibold text-stone-900 mb-4">
+              Shipping Address
+            </h2>
             <div className="grid grid-cols-2 gap-3">
-              <input name="firstName" placeholder="First name" value={form.firstName} onChange={handleChange} required
-                className="border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors" />
-              <input name="lastName" placeholder="Last name" value={form.lastName} onChange={handleChange} required
-                className="border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors" />
-              <input name="address" placeholder="Address" value={form.address} onChange={handleChange} required
-                className="col-span-2 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors" />
-              <input name="city" placeholder="City" value={form.city} onChange={handleChange} required
-                className="border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors" />
-              <input name="state" placeholder="State" value={form.state} onChange={handleChange}
-                className="border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors" />
-              <input name="zip" placeholder="PIN code" value={form.zip} onChange={handleChange} required
-                className="border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors" />
-              <select name="country" value={form.country} onChange={handleChange}
-                className="border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-600 focus:outline-none focus:border-stone-500 transition-colors bg-white">
+              <input
+                name="firstName"
+                placeholder="First name"
+                value={form.firstName}
+                onChange={handleChange}
+                required
+                className="border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
+              />
+              <input
+                name="lastName"
+                placeholder="Last name"
+                value={form.lastName}
+                onChange={handleChange}
+                className="border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
+              />
+              <input
+                name="address"
+                placeholder="Address"
+                value={form.address}
+                onChange={handleChange}
+                required
+                className="col-span-2 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
+              />
+              <input
+                name="city"
+                placeholder="City"
+                value={form.city}
+                onChange={handleChange}
+                required
+                className="border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
+              />
+              <input
+                name="state"
+                placeholder="State"
+                value={form.state}
+                onChange={handleChange}
+                className="border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
+              />
+              <input
+                name="zip"
+                placeholder="PIN code"
+                value={form.zip}
+                onChange={handleChange}
+                required
+                className="border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
+              />
+              <select
+                name="country"
+                value={form.country}
+                onChange={handleChange}
+                className="border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-600 focus:outline-none focus:border-stone-500 transition-colors bg-white"
+              >
                 <option>India</option>
                 <option>United States</option>
                 <option>United Kingdom</option>
@@ -132,37 +217,71 @@ export default function CheckoutPage() {
             </div>
           </div>
 
+          {apiError && (
+            <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">
+              {apiError}
+            </div>
+          )}
+
           <button
             type="submit"
-            disabled={!isComplete}
+            disabled={!isComplete || loading}
             className={`w-full py-4 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
-              isComplete
+              isComplete && !loading
                 ? "bg-stone-900 text-white hover:bg-stone-800"
                 : "bg-stone-100 text-stone-400 cursor-not-allowed"
             }`}
           >
-            Proceed to Payment · ₹{orderTotal}
+            {loading ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                Redirecting to payment…
+              </>
+            ) : (
+              `Pay ₹${orderTotal} securely`
+            )}
           </button>
+
+          <p className="text-center text-xs text-stone-400">
+            Secured by Juspay · Your card details are never stored on our
+            servers
+          </p>
         </form>
 
         {/* Order Summary */}
         <div className="lg:col-span-2">
           <div className="bg-stone-50 rounded-2xl p-6 sticky top-24">
-            <h2 className="text-lg font-semibold text-stone-900 mb-5">Order Summary</h2>
+            <h2 className="text-lg font-semibold text-stone-900 mb-5">
+              Order Summary
+            </h2>
 
             <div className="space-y-4 mb-5 max-h-72 overflow-y-auto pr-1">
               {items.map((item) => (
-                <div key={`${item.product.id}-${item.size}-${item.color}`} className="flex gap-3">
+                <div
+                  key={`${item.product.id}-${item.size}-${item.color}`}
+                  className="flex gap-3"
+                >
                   <div className="relative w-16 h-20 rounded-xl overflow-hidden bg-stone-200 flex-shrink-0">
-                    <Image src={item.product.image} alt={item.product.name} fill className="object-cover" />
+                    <Image
+                      src={item.product.image}
+                      alt={item.product.name}
+                      fill
+                      className="object-cover"
+                    />
                     <span className="absolute -top-1 -right-1 bg-stone-900 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
                       {item.quantity}
                     </span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-stone-900 truncate">{item.product.name}</p>
-                    <p className="text-xs text-stone-400">{item.size} · {item.color}</p>
-                    <p className="text-sm font-semibold mt-1">₹{item.product.price * item.quantity}</p>
+                    <p className="text-sm font-medium text-stone-900 truncate">
+                      {item.product.name}
+                    </p>
+                    <p className="text-xs text-stone-400">
+                      {item.size} · {item.color}
+                    </p>
+                    <p className="text-sm font-semibold mt-1">
+                      ₹{item.product.price * item.quantity}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -175,7 +294,13 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between text-stone-500">
                 <span>Shipping</span>
-                <span>{shipping === 0 ? <span className="text-emerald-600">Free</span> : `₹${shipping}`}</span>
+                <span>
+                  {shipping === 0 ? (
+                    <span className="text-emerald-600">Free</span>
+                  ) : (
+                    `₹${shipping}`
+                  )}
+                </span>
               </div>
               <div className="flex justify-between text-stone-500">
                 <span>Tax (8%)</span>
