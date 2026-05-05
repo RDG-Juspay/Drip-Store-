@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download, Smartphone } from "lucide-react";
 
 export default function HomePage() {
   const featured = products.slice(0, 4);
@@ -129,6 +129,28 @@ export default function HomePage() {
           </div>
         </section>
       )}
+
+      {/* App Download Banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+        <div className="bg-stone-900 rounded-3xl px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-5">
+            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <Smartphone size={28} className="text-white" />
+            </div>
+            <div>
+              <p className="text-white font-bold text-xl leading-tight">Drip Store — now on Android</p>
+              <p className="text-stone-400 text-sm mt-1">Shop faster with our native app. Free download, no sign-up required.</p>
+            </div>
+          </div>
+          <a
+            href="https://github.com/RDG-Juspay/Drip-Store-Flutter-App/releases/download/v1.0.0/drip-store-v1.0.0.apk"
+            download
+            className="flex-shrink-0 inline-flex items-center gap-2 bg-white text-stone-900 font-semibold text-sm px-6 py-3 rounded-full hover:bg-stone-100 transition-colors"
+          >
+            <Download size={16} /> Download APK
+          </a>
+        </div>
+      </section>
 
       {/* USPs */}
       <section className="bg-stone-50 py-14">

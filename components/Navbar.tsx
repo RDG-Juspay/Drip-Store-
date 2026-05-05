@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingBag, Search, Menu, X } from "lucide-react";
+import { ShoppingBag, Search, Menu, X, Download } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { useState } from "react";
 
@@ -25,6 +25,13 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <a
+            href="https://github.com/RDG-Juspay/Drip-Store-Flutter-App/releases/download/v1.0.0/drip-store-v1.0.0.apk"
+            download
+            className="hidden md:inline-flex items-center gap-1.5 bg-stone-900 text-white text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-stone-700 transition-colors"
+          >
+            <Download size={13} /> Get App
+          </a>
           <button className="hidden md:flex text-stone-600 hover:text-stone-900 transition-colors">
             <Search size={20} />
           </button>
@@ -54,6 +61,13 @@ export default function Navbar() {
           <Link href="/products" onClick={() => setMenuOpen(false)} className="text-sm font-medium text-stone-700">Shop All</Link>
           <Link href="/products?category=Men" onClick={() => setMenuOpen(false)} className="text-sm font-medium text-stone-700">Men</Link>
           <Link href="/products?category=Women" onClick={() => setMenuOpen(false)} className="text-sm font-medium text-stone-700">Women</Link>
+          <a
+            href="https://github.com/RDG-Juspay/Drip-Store-Flutter-App/releases/download/v1.0.0/drip-store-v1.0.0.apk"
+            download
+            className="inline-flex items-center gap-2 bg-stone-900 text-white text-sm font-semibold px-4 py-2 rounded-full w-fit"
+          >
+            <Download size={14} /> Download App
+          </a>
         </div>
       )}
     </header>
